@@ -24,7 +24,7 @@ public partial class UserDefinedFunctions
         //Ensure we have valid geometry
         geom = geom.MakeValid();
 
-        //remove curves
+        //remove any  curves
         if (GeometryType=="CircularString" || GeometryType=="CompoundCurve" || GeometryType=="CurvePolygon")
         {
             geom = geom.STCurveToLine();
@@ -44,7 +44,7 @@ public partial class UserDefinedFunctions
     }
 
     private static String PathsToJson(SqlGeometry Geometry)
-    {
+    {   //Serializes LineString and MultiLineString geometries.
         System.Text.StringBuilder JSONBuilder;
         JSONBuilder= new System.Text.StringBuilder("{\"paths\":[");
         Int32 PathCount = (Int32)Geometry.STNumGeometries();
@@ -72,7 +72,7 @@ public partial class UserDefinedFunctions
     }
 
     private static String PointsToJSON(SqlGeometry Geometry)
-    {       
+    {   //Serializes point and multi point geometries    
         System.Text.StringBuilder JSONBuilder;
         JSONBuilder = new System.Text.StringBuilder("{\"points\":[");
         Int32 PointCount = (Int32)Geometry.STNumPoints();
@@ -92,7 +92,7 @@ public partial class UserDefinedFunctions
     }
 
     private static String RingsToJSON(SqlGeometry Geometry)
-    {
+    {   //Serializes Polygon and MultiPolygon geometries
         //Geometry = Geometry.STUnion(Geometry.STStartPoint());
         System.Text.StringBuilder JSONBuilder;
         JSONBuilder = new System.Text.StringBuilder("{");
