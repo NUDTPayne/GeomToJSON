@@ -10,6 +10,4 @@ I changed the return to a nvarchar of maximum size.
 I am using the results of this function to create geometries in a graphics layer for an ESRI ArcGISRuntime .NET Project.
 The text generated is passed to the ESRI.ArcGISRuntime.Geometry.Geometry.FromJSON() method.  Originally I serialized the
 geometry in a TSQL function but performance was poor.  The CLR function performs much better. 
-Note: curved are transformed to LineStrings before being serialized to JSON.
-
-
+Note: curves are transformed to LineStrings before being serialized to JSON.
