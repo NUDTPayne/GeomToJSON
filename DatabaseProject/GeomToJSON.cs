@@ -1,8 +1,4 @@
-//------------------------------------------------------------------------------
-// <copyright file="CSSqlFunction.cs" company="Microsoft">
-//     Copyright (c) Microsoft Corporation.  All rights reserved.
-// </copyright>
-//------------------------------------------------------------------------------
+
 using System;
 using System.Data;
 using System.Data.SqlClient;
@@ -15,7 +11,7 @@ public partial class UserDefinedFunctions
     [Microsoft.SqlServer.Server.SqlFunction]
     public static String GeomToJSON(SqlGeometry geom)
     {
-        if (geom.IsNull) return "";
+        if (geom.IsNull) return "{}";
 
         String GeometryType = geom.STGeometryType().Value;
         try { 
